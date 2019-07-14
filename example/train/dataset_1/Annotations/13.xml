@@ -1,0 +1,26 @@
+<annotation>
+	<folder>船</folder>
+	<filename>13.jpg</filename>
+	<path>F:\图片\船\13.jpg</path>
+	<source>
+		<database>Unknown</database>
+	</source>
+	<size>
+		<width>1024</width>
+		<height>678</height>
+		<depth>3</depth>
+	</size>
+	<segmented>0</segmented>
+	<object>
+		<name>boat</name>
+		<pose>Unspecified</pose>
+		<truncated>0</truncated>
+		<difficult>0</difficult>
+		<bndbox>
+			<xmin>99</xmin>
+			<ymin>196</ymin>
+			<xmax>797</xmax>
+			<ymax>583</ymax>
+		</bndbox>
+	</object>
+</annotation>
