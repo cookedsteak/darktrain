@@ -1,6 +1,14 @@
 # darktrain
 training tool for darknet
 
+## Use
+
+准备数据集目录，参照 example。
+执行 prepare.py
+
+```python
+python3 prepare.py
+```
 
 ## 必要的文件
 
