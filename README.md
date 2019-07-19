@@ -35,6 +35,8 @@ $ python3 prepare.py
 
 ## TODO
 
-[] 根据names文件自动获取classes类
-[] 一击自动开始训练脚本
-[] 自动生成data文件
+[ ] 根据names文件自动获取classes类
+
+[ ] 一击自动开始训练脚本
+
+[ ] 自动生成data文件
