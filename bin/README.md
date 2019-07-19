@@ -1,1 +1,3 @@
-Do not add your own weights file here.
+# bin
+
+Put your weights file here.

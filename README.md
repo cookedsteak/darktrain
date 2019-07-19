@@ -1,16 +1,17 @@
 # darktrain
-training tool for darknet
+
+This is a tiny script which makes several files for darknet object detection training sets. 
 
 ## Use
 
-准备数据集目录，参照 example。
-执行 prepare.py
+Prepare your data-sets and follow the training_example directory structure.
 
-```python
-python3 prepare.py
+```bash
+$ cd [your/data-set/directory]
+$ python3 prepare.py
 ```
 
-## 必要的文件
+## Explication
 
 1. 预训练模型
 
@@ -29,3 +30,11 @@ python3 prepare.py
 1. 训练集 Annotation 文件夹，以及所有图片的xml文件
 
 1. 训练集图片 JPEGImages 文件夹
+
+## Reference
+
+## TODO
+
+[] 根据names文件自动获取classes类
+[] 一击自动开始训练脚本
+[] 自动生成data文件
