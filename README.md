@@ -1,7 +1,8 @@
 # darktrain
 
 This is a tiny script which prepare several files for darknet object detection training sets.
-[中文版]()说明请看这里
+
+[中文版](https://github.com/cookedsteak/darktrain/blob/master/README_zh.md)说明请看这里
 
 ## Use
 
