@@ -68,9 +68,14 @@ shutil.copy(train_file_path, val_file_path)
 
 print("Finished making txt files, now dealing with labels....")
 
-# 输入你想要训练的类
-# @TODO 根据 names 文件生成这个classes
-classes = ["boat"]
+# 设置 classes.names 并输入你想要训练的类
+# fill classes.names with the classes you need
+f = open('classes.names', 'r')
+line = f.read()
+classes = line.split('\n')
+
+while '' in classes:
+    classes.remove('')
 
 
 def convert(size, box):
