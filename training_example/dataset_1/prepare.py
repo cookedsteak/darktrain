@@ -4,6 +4,8 @@ import shutil
 import xml.etree.ElementTree as ET
 
 current_path = os.getcwd()
+classes_name = "classes.names"
+backup_name = "backup"
 
 # pre-check
 # check the dataset directories that required
@@ -11,15 +13,15 @@ if not os.path.exists(current_path + '/Annotations') or not os.path.exists(curre
     raise SystemExit("Missing Annotations or JPEGImages, aborting...")
 
 
-print("Making directories...")
+print("Pre-check finished, now making directories...")
 
-if not os.path.exists(os.getcwd() + '/backup/'):
-    os.mkdir(os.getcwd() + '/backup/')
+if not os.path.exists(os.getcwd() + '/' + backup_name):
+    os.mkdir(os.getcwd() + '/' + backup_name)
 
 if not os.path.exists(os.getcwd() + '/labels/'):
     os.mkdir(os.getcwd() + '/labels/')
 
-print("Making txt files...")
+print("Finished making directories, now making txt files...")
 
 # 根据JPEG中的文件，生成对应的 train_name  train_path txt
 jpg_path = current_path + "/JPEGImages/"
@@ -66,7 +68,7 @@ new_file_path.close()
 shutil.copy(train_file_name, val_file_name)
 shutil.copy(train_file_path, val_file_path)
 
-print("Finished making txt files, now dealing with labels....")
+print("Finished making txt files, now dealing with labels...")
 
 # 设置 classes.names 并输入你想要训练的类
 # fill classes.names with the classes you need
@@ -77,6 +79,19 @@ classes = line.split('\n')
 while '' in classes:
     classes.remove('')
 
+
+print("Labels finished, making data file...")
+
+f_data = open("my.data", "w")
+f_data.write("classes=" + str(len(classes)) + "\n")
+f_data.write("train=" + current_path + "/" + train_file_path + "\n")
+f_data.write("valid=" + current_path + "/" + val_file_path + "\n")
+f_data.write("names=" + current_path + "/" + classes_name + "\n")
+f_data.write("backup=" + current_path + "/" + backup_name)
+
+f_data.close()
+
+print("Start converting...")
 
 def convert(size, box):
     dw = 1./size[0]
