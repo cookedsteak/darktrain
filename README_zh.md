@@ -14,9 +14,15 @@
 
 其余的辅助文件，prepare.py 脚本都会自动生成。
 
-然后执行：
+准备好需要的文件，然后执行：
 
 ```bash
 $ cd [your/data-set/directory]
 $ python3 prepare.py
 ```
+
+然后利用
+```bash
+./darknet detector train [data文件] [cfg文件]
+```
+进行训练

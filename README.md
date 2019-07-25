@@ -28,4 +28,5 @@ $ python3 prepare.py
 
 Other files will be generated automatically in your training directory.
 
+Then use `./darknet detector train` to train your own model.
 
