@@ -8,10 +8,6 @@ This is a tiny script which prepare several files for darknet object detection t
 
 Prepare your data-sets and follow the training_example directory structure.
 
-## Preparation
-
-Please according to the structure of the example directory.
-
 Normally, you need 4 things prepared in our training directory.
 
 1. Annotations + JPEGImages
@@ -28,5 +24,5 @@ $ python3 prepare.py
 
 Other files will be generated automatically in your training directory.
 
-Then use `./darknet detector train` to train your own model.
+Then use `./darknet detector train ...` to train your own model :)
 
