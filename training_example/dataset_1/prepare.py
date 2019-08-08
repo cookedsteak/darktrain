@@ -48,11 +48,11 @@ if os.path.exists(val_file_path):
 new_file_name = open(train_file_name, 'a')
 new_file_path = open(train_file_path, 'a')
 
+link_str = '.'
 for i in fileList:
-    img_name = ''
-    fn = fileList[n].split(".", 1)
-    for ii in range(len(fn)-1):
-        img_name = img_name + fn[ii-1]
+    fn = fileList[n].split(".")
+    fn.pop(-1)
+    img_name = link_str.join(fn)
 
     img_path = jpg_path + fileList[n]
 
