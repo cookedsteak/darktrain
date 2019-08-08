@@ -49,8 +49,10 @@ new_file_name = open(train_file_name, 'a')
 new_file_path = open(train_file_path, 'a')
 
 for i in fileList:
+    img_name = ''
     fn = fileList[n].split(".", 1)
-    img_name = fn[0]
+    for ii in range(len(fn)-1):
+        img_name = img_name + fn[ii-1]
 
     img_path = jpg_path + fileList[n]
 
