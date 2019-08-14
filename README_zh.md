@@ -23,6 +23,10 @@ $ python3 prepare.py
 
 然后利用
 ```bash
-./darknet detector train [data文件] [cfg文件]
+./darknet detector train [data文件] [cfg文件] [预训练模型]
 ```
-进行训练
+进行训练 :)
+
+## 参考
+
+关于darknet训练的详细教程，可以参考[这里](https://github.com/AlexeyAB/darknet)
