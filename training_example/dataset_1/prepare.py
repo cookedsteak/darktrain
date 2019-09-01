@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import shutil
 
@@ -23,7 +24,7 @@ if not os.path.exists(os.getcwd() + '/labels/'):
 
 print("Finished making directories, now making txt files...")
 
-# 根据JPEG中的文件，生成对应的 train_name  train_path txt
+# generate train_name  train_path txt
 jpg_path = current_path + "/JPEGImages/"
 fileList = os.listdir(jpg_path)
 n = 0
@@ -72,7 +73,7 @@ shutil.copy(train_file_path, val_file_path)
 
 print("Finished making txt files, now dealing with labels...")
 
-# 设置 classes.names 并输入你想要训练的类
+# set classes.names
 # fill classes.names with the classes you need
 f = open('classes.names', 'r')
 line = f.read()
@@ -110,9 +111,9 @@ def convert(size, box):
 
 
 def convert_annotation(image_id):
-    #这里改为xml文件夹的路径
-    in_file = open(current_path + '/Annotations/%s.xml' % image_id)
-    #这里是生成每张图片对应的txt文件的路径
+    # xml path
+    in_file = open(current_path + '/Annotations/%s.xml' % image_id, encoding='utf-8')
+    # txt file path
     out_file = open(current_path + '/labels/%s.txt' % image_id, 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
@@ -137,14 +138,14 @@ list_file_train = open(current_path + '/' + train_file_path, 'w')
 list_file_val = open(current_path + '/' + val_file_path, 'w')
 
 for image_id in image_ids_train:
-    #这里改为样本图片所在文件夹的路径
+    # train images path
     list_file_train.write(current_path + '/JPEGImages/%s.jpg\n' % image_id)
     convert_annotation(image_id)
 
 list_file_train.close()
 
 for image_id in image_ids_val:
-    #这里改为样本图片所在文件夹的路径
+    # validation images path
     list_file_val.write(current_path + '/JPEGImages/%s.jpg\n' % image_id)
     convert_annotation(image_id)
 
