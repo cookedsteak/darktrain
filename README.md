@@ -16,13 +16,15 @@ Automatically generates necessary files for training darknet models such as:
 
 ## Use
 
-1. Get ready for your data-sets(Annotations + JPEGImages) and place them following the structure of `training_example` directory.
+1. Get ready for your data-sets(Annotations + JPEGImages + JPEGImages_val) and place them following the structure of `training_example` directory.
 
 2. Make your own `classes` file and name it as `classes.names`.
 
 3. Copy a `.cfg` file and adjust some parameters.
  
 5. Prepare a pre-trained model(darknet53.cnv.74).
+
+* JPEGImages_val is a validation directory, if you don't have validation images, just put some training images inside.
 
 Once we finished our preparation:
 
@@ -33,7 +35,9 @@ $ python3 prepare.py
 
 Necessary files will be generated automatically in your training directory.
 
-Then use command `./darknet detector train [data-file path] [cfg-file path] [pre-trained model path]` to train your own model :)
+Then use command `./darknet detector train [data-file path] [cfg-file path] [pre-trained model path]` to train your own model
+
+Also use command `./darknet detector test [data file] [cfg file] [weights file] [image] -thresh 0.5` to test your model
 
 
 ## Reference

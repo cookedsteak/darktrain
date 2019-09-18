@@ -10,7 +10,7 @@ backup_name = "backup"
 
 # pre-check
 # check the dataset directories that required
-if not os.path.exists(current_path + '/Annotations') or not os.path.exists(current_path + '/JPEGImages'):
+if not os.path.exists(current_path + '/Annotations') or not os.path.exists(current_path + '/JPEGImages') or not os.path.exists(current_path + '/JPEGImages_val'):
     raise SystemExit("Missing Annotations or JPEGImages, aborting...")
 
 
@@ -26,7 +26,9 @@ print("Finished making directories, now making txt files...")
 
 # generate train_name  train_path txt
 jpg_path = current_path + "/JPEGImages/"
+jpg_val_path = current_path + "/JPEGImages_val/"
 fileList = os.listdir(jpg_path)
+fileList_val = os.listdir(jpg_val_path)
 n = 0
 train_file_name = "train_name.txt"
 train_file_path = "train_path.txt"
@@ -48,6 +50,8 @@ if os.path.exists(val_file_path):
 
 new_file_name = open(train_file_name, 'a')
 new_file_path = open(train_file_path, 'a')
+new_file_val_name = open(val_file_name, 'a')
+new_file_val_path = open(val_file_path, 'a')
 
 link_str = '.'
 for i in fileList:
@@ -65,11 +69,29 @@ for i in fileList:
 
     n += 1
 
+n = 0
+for i in fileList_val:
+    fn = fileList_val[n].split(".")
+    fn.pop(-1)
+    img_name = link_str.join(fn)
+
+    img_path = jpg_val_path + fileList_val[n]
+
+    new_file_val_name.write(img_name)
+    new_file_val_name.write("\n")
+
+    new_file_val_path.write(img_path)
+    new_file_val_path.write("\n")
+
+    n += 1
+
 new_file_name.close()
 new_file_path.close()
+new_file_val_name.close()
+new_file_val_path.close()
 
-shutil.copy(train_file_name, val_file_name)
-shutil.copy(train_file_path, val_file_path)
+# shutil.copy(train_file_name, val_file_name)
+# shutil.copy(train_file_path, val_file_path)
 
 print("Finished making txt files, now dealing with labels...")
 
@@ -146,7 +168,7 @@ list_file_train.close()
 
 for image_id in image_ids_val:
     # validation images path
-    list_file_val.write(current_path + '/JPEGImages/%s.jpg\n' % image_id)
+    list_file_val.write(current_path + '/JPEGImages_val/%s.jpg\n' % image_id)
     convert_annotation(image_id)
 
 list_file_val.close()

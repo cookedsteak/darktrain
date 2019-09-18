@@ -7,12 +7,14 @@
 请按照实例中的结构组织你的训练文件夹。
 
 我们准备4样东西。
-1. 训练的图片和标签，通常是 Annotations + JPEGImages 两个文件夹放在根目录。
+1. 训练的图片和标签，通常是 Annotations + JPEGImages/JPEGImages_val 两个文件夹放在根目录。
 2. 我们要训练的图片中的类别文件，以 classes.names 命名。
 4. 我们调整的 cfg 文件，放在根目录
 5. 我们需要训练的预模型，放在根目录或其他目录
 
 其余的辅助文件，prepare.py 脚本都会自动生成。
+
+* JPEGImages_val是验证图片文件夹，如果没有验证图片，可以将训练图片复制进验证文件夹
 
 准备好需要的文件，然后执行：
 
@@ -26,6 +28,11 @@ $ python3 prepare.py
 ./darknet detector train [data文件] [cfg文件] [预训练模型]
 ```
 进行训练 :)
+
+测试可以使用如下命令
+```bash
+./darknet detector test [data] [cfg] [weights] [jpeg] -thresh 0.1
+```
 
 ## 参考
 
