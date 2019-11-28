@@ -1,6 +1,6 @@
 # darktrain
 
-This is a tool which prepare several files for darknet object detection training sets.
+This is a tool which prepares several files for darknet object detection training sets.
 
 [中文版](https://github.com/cookedsteak/darktrain/blob/master/README_zh.md)说明请看这里
 
