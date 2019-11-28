@@ -1,6 +1,6 @@
 # darktrain
 
-一个准备darknet训练文件的小脚本。
+一个准备darknet训练文件的小工具。
 
 ## 用法
 
@@ -25,7 +25,7 @@ $ python3 prepare.py
 
 然后利用
 ```bash
-./darknet detector train [data文件] [cfg文件] [预训练模型]
+./darknet detector train [data文件] [cfg文件] [预训练模型] -clear 1 (如果使用预训练模型)
 ```
 进行训练 :)
 
@@ -37,3 +37,7 @@ $ python3 prepare.py
 ## 参考
 
 关于darknet训练的详细教程，可以参考[这里](https://github.com/AlexeyAB/darknet)
+
+## TODO
+
+设置是否需要验证集文件夹的flag

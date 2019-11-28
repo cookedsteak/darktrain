@@ -4,13 +4,18 @@ import shutil
 
 import xml.etree.ElementTree as ET
 
+# input your filename & directory name
 current_path = os.getcwd()
 classes_name = "classes.names"
 backup_name = "backup"
+an_name = 'Annotations'
+tr_name = 'JPEGImages'
+val_name = 'JPEGImages'  # val_name = 'JPEGImages_val'
+
 
 # pre-check
 # check the dataset directories that required
-if not os.path.exists(current_path + '/Annotations') or not os.path.exists(current_path + '/JPEGImages') or not os.path.exists(current_path + '/JPEGImages_val'):
+if not os.path.exists(current_path + '/' + an_name) or not os.path.exists(current_path + '/' + tr_name) or not os.path.exists(current_path + '/' + val_name):
     raise SystemExit("Missing Annotations or JPEGImages, aborting...")
 
 
@@ -25,8 +30,8 @@ if not os.path.exists(os.getcwd() + '/labels/'):
 print("Finished making directories, now making txt files...")
 
 # generate train_name  train_path txt
-jpg_path = current_path + "/JPEGImages/"
-jpg_val_path = current_path + "/JPEGImages_val/"
+jpg_path = current_path + "/" + tr_name + "/"
+jpg_val_path = current_path + "/" + val_name + "/"
 fileList = os.listdir(jpg_path)
 fileList_val = os.listdir(jpg_val_path)
 n = 0
@@ -134,7 +139,7 @@ def convert(size, box):
 
 def convert_annotation(image_id):
     # xml path
-    in_file = open(current_path + '/Annotations/%s.xml' % image_id, encoding='utf-8')
+    in_file = open(current_path + '/' + an_name + '/%s.xml' % image_id, encoding='utf-8')
     # txt file path
     out_file = open(current_path + '/labels/%s.txt' % image_id, 'w')
     tree = ET.parse(in_file)
@@ -161,14 +166,14 @@ list_file_val = open(current_path + '/' + val_file_path, 'w')
 
 for image_id in image_ids_train:
     # train images path
-    list_file_train.write(current_path + '/JPEGImages/%s.jpg\n' % image_id)
+    list_file_train.write(current_path + '/%s/%s.jpg\n' % (tr_name, image_id))
     convert_annotation(image_id)
 
 list_file_train.close()
 
 for image_id in image_ids_val:
     # validation images path
-    list_file_val.write(current_path + '/JPEGImages_val/%s.jpg\n' % image_id)
+    list_file_val.write(current_path + '/%s/%s.jpg\n' % (val_name, image_id))
     convert_annotation(image_id)
 
 list_file_val.close()

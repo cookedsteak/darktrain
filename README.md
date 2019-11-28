@@ -1,6 +1,6 @@
 # darktrain
 
-This is a tiny script which prepare several files for darknet object detection training sets.
+This is a tool which prepare several files for darknet object detection training sets.
 
 [中文版](https://github.com/cookedsteak/darktrain/blob/master/README_zh.md)说明请看这里
 
@@ -48,3 +48,4 @@ Also use command `./darknet detector test [data file] [cfg file] [weights file] 
 ## TODO
 
 1. Automatic `.cfg` file generator
+2. Validation directory flag
