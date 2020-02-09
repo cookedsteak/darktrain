@@ -49,3 +49,4 @@ Also use command `./darknet detector test [data file] [cfg file] [weights file] 
 
 1. Automatic `.cfg` file generator
 2. Validation directory flag
+3. Make classes.name automatically
