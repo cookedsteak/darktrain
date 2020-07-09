@@ -1,7 +1,6 @@
 .idea
 bin/*.weights
 *.weights
-
 bin/darknet53.conv.74
 
 .DS_Store
