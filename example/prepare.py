@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
-import shutil
 import xml.etree.ElementTree as ET
-import sys
 
-sys.setdefaultencoding('utf8')
 '''
     ##################################
     Stage1 Prepare raw files
@@ -61,6 +58,7 @@ for i in fileList:
     img_name = link_str.join(fn)
 
     img_path = jpg_path + fileList[n]
+
 
     new_file_name.write(img_name)
     new_file_name.write("\n")
