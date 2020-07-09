@@ -56,8 +56,8 @@ for i in fileList:
     fn = fileList[n].split(".")
     fn.pop(-1)
 
-    img_name = link_str.join(fn).encode('utf-8').strip()
-    new_file_name.write(str(img_name))
+    img_name = link_str.join(fn).strip()
+    new_file_name.write(str(img_name), encoding="utf-8")
     new_file_name.write("\n")
 
     img_path = jpg_path + fileList[n]
