@@ -2,7 +2,9 @@
 import os
 import shutil
 import xml.etree.ElementTree as ET
+import sys
 
+sys.setdefaultencoding('utf8')
 '''
     ##################################
     Stage1 Prepare raw files
