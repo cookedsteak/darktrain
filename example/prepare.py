@@ -61,7 +61,7 @@ for i in fileList:
     new_file_name.write("\n")
 
     img_path = jpg_path + fileList[n]
-    img_path.encode('utf-8').strip()
+    img_path.strip()
     new_file_path.write(img_path)
     new_file_path.write("\n")
 
