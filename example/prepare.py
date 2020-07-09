@@ -118,8 +118,7 @@ def convert(size, box):
 
 def convert_annotation(iid):
     # xml path
-    in_file = open(current_path + '/' + an_name + '/%s.xml' % iid)
-
+    in_file = open(current_path + '/' + an_name + '/%s.xml' % image_id, encoding='utf-8')
     # txt file path
     out_file = open(current_path + '/labels/%s.txt' % iid, 'w')
     tree = ET.parse(in_file)
