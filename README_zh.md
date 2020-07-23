@@ -8,7 +8,7 @@
 
 我们准备4样东西。
 1. 训练的图片和标签，通常是 Annotations + JPEGImages/JPEGImages_val 两个文件夹放在根目录。
-2. 我们要训练的图片中的类别文件，以 classes.names 命名。
+2. 我们要训练的图片中的类别文件，以 classes.names 命名。（可以使用archiver自动生成）
 4. 我们调整的 cfg 文件，放在根目录
 5. 我们需要训练的预模型，放在根目录或其他目录
 
@@ -38,9 +38,9 @@ $ python3 prepare.py
 
 关于darknet训练的详细教程，可以参考[这里](https://github.com/AlexeyAB/darknet)
 
-## TODO
+## 数据集预处理archiver
 
-- 设置是否需要验证集文件夹的flag
-- 如果遇见有图片没有标注的话怎么处理？
-- 图片名中含有空格怎么处理？
-- 自动执行脚本
+改代码实现：
+1. 将离散的文件夹整理到统一的文件夹中
+2. 清除非jpg/jpeg结尾的数据，以及图像尺寸不达标的数据
+3. 自动归类生成数据 classes.names 文件
