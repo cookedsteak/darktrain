@@ -9,9 +9,8 @@ prepare 生成所有训练所需要的文件
 
 先汇总图片，-d可以是已经有文件的文件夹，不会覆盖，只会重新添加
 python3 archive.py -j [path of src images] -x [path of src annotations] -d [destination directory default is final-popo]
-
-python3 cleaner.py
-python3 classify.py
+python3 cleaner.py -j [a] -x [xml] 清除尺寸较小的图片 
+python3 classify.py -x [xml] 准备分类文件
 python3 prepare (暂时只能在汇总文件夹的目录执行)
 
 # TODO
