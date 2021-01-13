@@ -2,5 +2,6 @@
 bin/*.weights
 *.weights
 bin/darknet53.conv.74
+archiver/final-pop
 
 .DS_Store
