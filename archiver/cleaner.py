@@ -3,12 +3,13 @@ import cv2
 import argparse
 import os
 
-min_width = 40
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     # 图片所在文件夹
     ap.add_argument("-j", "--images", required=True, help="origin images directory")
+    # 所要过滤的图片尺寸
+    ap.add_argument("-f","--filter", type=int, default=40, help="image size you want to filter")
     # 标注所在文件夹
     ap.add_argument("-x", "--annotations", required=True, help="origin annotations directory")
     args = vars(ap.parse_args())
@@ -22,7 +23,7 @@ if __name__ == '__main__':
         pn = j.split(".")
         pn.pop(-1)
         # 删除小宽度的图片
-        if sp[1] <= min_width:
+        if sp[1] <= args['filter']:
             os.remove(args['images'] + '/' + j)
             if os.path.exists(args['annotations'] + '/' + pn[0] + '.xml'):
                 os.remove(args['annotations'] + '/' + pn[0] + '.xml')

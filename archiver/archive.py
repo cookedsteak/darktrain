@@ -29,7 +29,7 @@ if __name__ == '__main__':
     # 标注所在文件夹
     ap.add_argument("-x", "--annotations", required=True, help="origin annotations directory")
     # 移动到的目标文件夹
-    ap.add_argument("-d", "--des", default="final-popo", help="new destination directory")
+    ap.add_argument("-d", "--des", required=True, help="new destination directory")
     args = vars(ap.parse_args())
 
     jpeg_folder_name = "JPEGImages"
