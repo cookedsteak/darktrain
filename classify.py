@@ -35,9 +35,9 @@ def read_file_as_str(file_path):
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     # 标注所在文件夹
-    ap.add_argument("-x", "--annotations", required=True, help="origin annotations directory")
+    ap.add_argument("-x", "--annotations", required=True, help="annotations directory")
     ap.add_argument("-d", "--des", default="final-pop", help="new destination directory")
-    ap.add_argument("-c", "--cfg", default="./cfg_template/yolov3_cfg.tpl", help="path of template config file")
+    ap.add_argument("-c", "--cfg", default="./cfg_template/yolov4_cfg.tpl", help="path of template config file")
     args = vars(ap.parse_args())
 
     path_annotations = args['annotations'].rstrip('/')
@@ -74,5 +74,5 @@ if __name__ == '__main__':
     origin_text = read_file_as_str(args["cfg"])
     st = Template(origin_text)
     new_text = st.safe_substitute({'a': var_a, 'b': var_b, 'c': var_c, 'd': var_d, 'e': var_e})
-    out_file_tmp = open(current_path + '/' + args['des'] + '/yolov3.cfg', 'w')
+    out_file_tmp = open(current_path + '/' + args['des'] + '/yolo_final.cfg', 'w')
     out_file_tmp.write(new_text)

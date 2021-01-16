@@ -1,52 +1,38 @@
-# darktrain
+# 准备
 
-This is a tool which prepares several files for darknet object detection training sets.
+利用工具生成的图片和xml标注文件。
 
-[中文版](https://github.com/cookedsteak/darktrain/blob/master/README_zh.md)说明请看这里
+# 功能
 
+将图片和标注转化为可以训练的文件结构。
 
-## What for
-
-Automatically generates necessary files for training darknet models such as:
-
-- label files
-- .data file
-- image list
-- annotation list
-
-## Use
-
-1. Get ready for your data-sets(Annotations + JPEGImages + JPEGImages_val) and place them following the structure of `training_example` directory.
-
-2. Make your own `classes` file and name it as `classes.names`.
-
-3. Copy a `.cfg` file and adjust some parameters.
+### archive.py
+`python archive.py -j [源图片文件夹] -x [源标注文件夹] -d [整理后的新文件夹]`
  
-5. Prepare a pre-trained model(darknet53.cnv.74).
-
-* JPEGImages_val is a validation directory, if you don't have validation images, just put some training images inside.
-
-Once we finished our preparation:
-
-```bash
-$ cd [your/data-set/directory]
-$ python3 prepare.py
-```
-
-Necessary files will be generated automatically in your training directory.
-
-Then use command `./darknet detector train [data-file path] [cfg-file path] [pre-trained model path]` to train your own model
-
-Also use command `./darknet detector test [data file] [cfg file] [weights file] [image] -thresh 0.5` to test your model
+将制定文件夹中的图片和标注，汇总到一个文件夹并重新命名，防止重复。
 
 
-## Reference
+### cleaner.py 
+`python cleaner.py -j [图片文件夹] -x [标注文件夹]`
 
-- https://github.com/AlexeyAB/darknet
+删除小尺寸图片和无效关联图片，同时删除对应标注文件。
+
+### classify.py
+`python classify.py -x [标注文件位置] -d [存放分类和配置文件的位置]`
+ 
+将所有xml中的分类集中到 my.classes 文件中，并且自动生成训练配置cfg文件。
+
+### prepare.py
+`python prepare.py -d [目标文件夹]`
+ 
+生成所有训练所需要的标签、位置文件。
+
+### darktrain.sh 
+`./darktrain [源图片文件夹] [源标注文件夹]`
+
+整合在一起的bash脚本。
 
 
-## TODO
-
-1. Automatic `.cfg` file generator
-2. Validation directory flag
-3. Make classes.name automatically
+# TODO
+1. [x] prepare 同时根据分类数量生成cfg模板文件
+2. [x] 自动化执行脚本，用户只需要放入图片和标注

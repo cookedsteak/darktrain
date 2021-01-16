@@ -35,6 +35,9 @@ if __name__ == '__main__':
     jpeg_folder_name = "JPEGImages"
     xml_folder_name = "Annotations"
     current_path = os.getcwd()
+    args['images'] = args['images'].rstrip('/')
+    args['annotations'] = args['annotations'].rstrip('/')
+    args['des'] = args['des'].rstrip('/')
     # 查看目标文件夹下的子文件夹是否齐全
     make_dir_if_not_exists(current_path + '/' + args['des'])
     d_jpg_path = make_dir_if_not_exists(current_path + '/' + args['des'] + '/' + jpeg_folder_name)

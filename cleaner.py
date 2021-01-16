@@ -15,6 +15,8 @@ if __name__ == '__main__':
     args = vars(ap.parse_args())
 
     # 图片文件夹下的文件名列表
+    args['images'] = args['images'].rstrip('/')
+    args['annotations'] = args['annotations'].rstrip('/')
     jpg_list = os.listdir(args['images'])
     # 以图片为主要依据，开始轮询
     for j in jpg_list:

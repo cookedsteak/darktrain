@@ -24,26 +24,27 @@ def convert(size, box):
     return x, y, w, h
 
 
-def convert_annotation(iid):
+def convert_annotation(iid, a, lp):
     # xml path
-    in_file = open(current_path + '/' + an_name + '/%s.xml' % image_id)
+    in_file = open(a + '/%s.xml' % iid)
     # txt file path
-    out_file = open(current_path + '/labels/%s.txt' % iid, 'w')
+    out_file = open(lp + '/%s.txt' % iid, 'w')
     tree = ET.parse(in_file)
     root = tree.getroot()
     size = root.find('size')
     w = int(size.find('width').text)
     h = int(size.find('height').text)
-
+    print("converting " + iid)
     for obj in root.iter('object'):
         cls = obj.find('name').text
         if cls not in classes:
             continue
         cls_id = classes.index(cls)
         xml_box = obj.find('bndbox')
-        b = (float(xml_box.find('xmin').text), float(xml_box.find('xmax').text), float(xml_box.find('ymin').text),
+        b = (float(xml_box.find('xmin').text),
+             float(xml_box.find('xmax').text),
+             float(xml_box.find('ymin').text),
              float(xml_box.find('ymax').text))
-        print("converting" + iid)
         bb = convert((w, h), b)
         out_file.write(str(cls_id) + " " + " ".join([str(a) for a in bb]) + '\n')
 
@@ -68,6 +69,8 @@ if __name__ == '__main__':
     labels = "labels"
     an_name = 'Annotations'
     tr_name = 'JPEGImages'
+    an_path = current_path + an_name
+    label_path = current_path + labels
     # val_name = 'JPEGImages'  # val_name = 'JPEGImages_val'
 
     # pre-check
@@ -93,8 +96,8 @@ if __name__ == '__main__':
     fileList = os.listdir(jpg_path)
     n = 0
     # 之后生成label的依据
-    train_file_name = "train_name.txt"
-    train_file_path = "train_path.txt"
+    train_file_name = current_path + "train_name.txt"
+    train_file_path = current_path + "train_path.txt"
 
     if os.path.exists(train_file_name):
         os.remove(train_file_name)
@@ -128,7 +131,7 @@ if __name__ == '__main__':
 
     # set classes.names
     # fill classes.names with the classes you need
-    f = open('classes.names', 'r')
+    f = open(current_path+'classes.names', 'r')
     line = f.read()
     classes = line.split('\n')
 
@@ -137,10 +140,10 @@ if __name__ == '__main__':
 
     print("Labels finished, making data file...")
 
-    f_data = open("my.data", "w")
+    f_data = open(current_path+"my.data", "w")
     f_data.write("classes=" + str(len(classes)) + "\n")
-    f_data.write("train=" + current_path + train_file_path + "\n")
-    f_data.write("valid=" + current_path + train_file_path + "\n")
+    f_data.write("train=" + train_file_path + "\n")
+    f_data.write("valid=" + train_file_path + "\n")
     f_data.write("names=" + current_path + classes_name + "\n")
     f_data.write("backup=" + current_path + backup_name)
 
@@ -148,15 +151,15 @@ if __name__ == '__main__':
 
     print("Start converting...")
 
-    image_ids_train = open(current_path + train_file_name).read().strip().split()
+    image_ids_train = open(train_file_name).read().strip().split()
     # image_ids_val = open(current_path + val_file_name).read().strip().split()
-    list_file_train = open(current_path + train_file_path, 'w')
+    list_file_train = open(train_file_path, 'w')
     # list_file_val = open(current_path + val_file_path, 'w')
 
     for image_id in image_ids_train:
         # train images path
         list_file_train.write(current_path + '%s/%s.jpg\n' % (tr_name, image_id))
-        convert_annotation(image_id)
+        convert_annotation(image_id, an_path, label_path)
 
     list_file_train.close()
 
