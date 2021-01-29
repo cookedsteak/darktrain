@@ -71,8 +71,15 @@ if __name__ == '__main__':
     var_e = len(class_names)
     var_d = (var_e + 5) * 3
 
+    if not os.path.isfile(args["cfg"]):
+        raise TypeError(args["cfg"] + " does not exist")
+
     origin_text = read_file_as_str(args["cfg"])
+    # 获取文件名
+    origin_filename_tmp = args["cfg"].split("/")[-1]
+    origin_filename = origin_filename_tmp.split(".")[0]
+
     st = Template(origin_text)
     new_text = st.safe_substitute({'a': var_a, 'b': var_b, 'c': var_c, 'd': var_d, 'e': var_e})
-    out_file_tmp = open(current_path + '/' + args['des'] + '/yolo_final.cfg', 'w')
+    out_file_tmp = open(current_path + '/' + args['des'] + '/'+origin_filename+'_final.cfg', 'w')
     out_file_tmp.write(new_text)

@@ -31,7 +31,10 @@
 `./darktrain [源图片文件夹] [源标注文件夹]`
 
 整合在一起的bash脚本。
+默认生成xxx_after文件夹存放处理后的数据。
 
+# 训练
+`./darknet detector train cfg/coco.data yolov4.cfg yolov4.conv.137`
 
 # TODO
 1. [x] prepare 同时根据分类数量生成cfg模板文件
